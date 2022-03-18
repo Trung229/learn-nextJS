@@ -1,8 +1,22 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+
 
 export default function Home() {
+  const router = useRouter()
+  function handleRouter() {
+    router.push({
+      pathname: '/posts/[postID]',
+      query: {
+        postID: 123,
+        ref: 'social'
+      }
+    });
+
+  }
   return (
     <div className={styles.container}>
       <Head>
@@ -11,6 +25,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
+        <Link href="/about">
+          <a>Go to about</a>
+        </Link>
+        <button onClick={handleRouter}>
+          Go to post ID
+        </button>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Mal WOrd</a>
         </h1>
